@@ -1,0 +1,72 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Home Assistant Community Add-on: N8N
+# Runs N8N workflow automation
+# ==============================================================================
+
+declare n8n_args=()
+declare ssl
+declare username
+declare password
+declare webhook_url
+declare timezone
+
+bashio::log.info "Starting N8N..."
+
+# Set data folder
+export N8N_USER_FOLDER="/data/n8n"
+
+# Timezone
+timezone=$(bashio::config 'timezone')
+export GENERIC_TIMEZONE="${timezone}"
+export TZ="${timezone}"
+
+# Webhook URL
+if bashio::config.has_value 'webhook_url'; then
+    webhook_url=$(bashio::config 'webhook_url')
+    export WEBHOOK_URL="${webhook_url}"
+    bashio::log.info "Webhook URL set to: ${webhook_url}"
+fi
+
+# Basic Auth
+if bashio::config.has_value 'username' && bashio::config.has_value 'password'; then
+    username=$(bashio::config 'username')
+    password=$(bashio::config 'password')
+    export N8N_BASIC_AUTH_ACTIVE="true"
+    export N8N_BASIC_AUTH_USER="${username}"
+    export N8N_BASIC_AUTH_PASSWORD="${password}"
+    bashio::log.info "Basic authentication enabled for user: ${username}"
+else
+    export N8N_BASIC_AUTH_ACTIVE="false"
+    bashio::log.warning "No authentication configured! Consider setting a username and password."
+fi
+
+# SSL Configuration
+ssl=$(bashio::config 'ssl')
+if bashio::var.true "${ssl}"; then
+    certfile=$(bashio::config 'certfile')
+    keyfile=$(bashio::config 'keyfile')
+    export N8N_PROTOCOL="https"
+    export N8N_SSL_CERT="/ssl/${certfile}"
+    export N8N_SSL_KEY="/ssl/${keyfile}"
+    bashio::log.info "SSL enabled"
+else
+    export N8N_PROTOCOL="http"
+fi
+
+# Host and port settings
+export N8N_HOST="0.0.0.0"
+export N8N_PORT="5678"
+
+# Disable telemetry
+export N8N_DIAGNOSTICS_ENABLED="false"
+export N8N_VERSION_NOTIFICATIONS_ENABLED="false"
+
+# Set user settings path
+export N8N_CONFIG_FILES="/data/n8n/config"
+
+bashio::log.info "N8N data folder: ${N8N_USER_FOLDER}"
+bashio::log.info "N8N is starting on port 5678..."
+
+# Start N8N
+exec n8n start
