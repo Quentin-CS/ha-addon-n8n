@@ -17,7 +17,7 @@ RUN apk add --no-cache \
     ttf-freefont
 
 # Set N8N version
-ARG N8N_VERSION=1.28.0
+ARG N8N_VERSION=2.12.0
 
 # Install N8N globally
 RUN npm install -g n8n@${N8N_VERSION} --unsafe-perm
