@@ -7,14 +7,7 @@ RUN apk add --no-cache \
     npm \
     python3 \
     make \
-    g++ \
-    git \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont
+    g++
 
 # Set N8N version
 ARG N8N_VERSION=2.12.0

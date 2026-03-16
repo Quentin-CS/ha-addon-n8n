@@ -8,8 +8,7 @@ arch:
   - amd64
   - armhf
   - armv7
-  - i386
-startup: services
+startup: application
 boot: auto
 ports:
   5678/tcp: 5678
@@ -17,16 +16,14 @@ ports_description:
   5678/tcp: "N8N Web Interface"
 map:
   - share:rw
-  - config:ro
 options:
   ssl: false
   certfile: "fullchain.pem"
   keyfile: "privkey.pem"
-  username: "admin"
-  password: "admin"
+  username: ""
+  password: ""
   timezone: "Europe/Paris"
   webhook_url: ""
-  generic_timezone: "Europe/Paris"
 schema:
   ssl: bool
   certfile: str
@@ -35,12 +32,7 @@ schema:
   password: str
   timezone: str
   webhook_url: str
-  generic_timezone: str
-image: "ghcr.io/quentin-cs/ha-addon-n8n/{arch}"
 url: "https://github.com/Quentin-CS/ha-addon-n8n"
-homeassistant_api: false
-hassio_api: false
-auth_api: false
 ingress: true
 ingress_port: 5678
 panel_icon: "mdi:workflow"
