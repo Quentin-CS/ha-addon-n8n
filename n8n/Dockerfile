@@ -1,7 +1,7 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install Node.js and N8N
+# Install Node.js and dependencies
 RUN apk add --no-cache \
     nodejs \
     npm \
@@ -9,23 +9,17 @@ RUN apk add --no-cache \
     make \
     g++
 
-# Set N8N version
+# Install N8N
 ARG N8N_VERSION=2.12.0
-
-# Install N8N globally
 RUN npm install -g n8n@${N8N_VERSION} --unsafe-perm
 
 # Create data directory
 RUN mkdir -p /data/n8n
 
-# Copy root filesystem
-COPY rootfs /
+# Copy and set run script
+COPY run.sh /run.sh
+RUN chmod a+x /run.sh
 
-# Set correct permissions for run script
-RUN chmod a+x /etc/services.d/n8n/run
-
-# Set working directory
 WORKDIR /data
 
-# Expose N8N port
-EXPOSE 5678
+CMD [ "/run.sh" ]

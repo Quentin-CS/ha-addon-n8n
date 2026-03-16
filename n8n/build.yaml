@@ -4,15 +4,14 @@ build_from:
   amd64: ghcr.io/hassio-addons/base:15.0.1
   armhf: ghcr.io/hassio-addons/base:15.0.1
   armv7: ghcr.io/hassio-addons/base:15.0.1
-  i386: ghcr.io/hassio-addons/base:15.0.1
 args:
-  N8N_VERSION: "1.28.0"
+  N8N_VERSION: "2.12.0"
 labels:
   io.hass.name: "N8N"
   io.hass.description: "N8N Workflow Automation"
-  io.hass.arch: "aarch64|amd64|armhf|armv7|i386"
+  io.hass.arch: "aarch64|amd64|armhf|armv7"
   io.hass.type: "addon"
-  io.hass.version: "dev"
+  io.hass.version: "1.0.0"
   maintainer: "Quentin Santander"
   org.opencontainers.image.title: "N8N for Home Assistant"
   org.opencontainers.image.description: "N8N Workflow Automation for Home Assistant"
