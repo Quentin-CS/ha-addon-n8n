@@ -14,7 +14,7 @@ N8N est un outil d'automatisation de workflows open source qui vous permet de co
 
 ## Installation rapide
 
-1. [![Ouvrir dans Home Assistant](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/your-repo/ha-addon-n8n)
+1. [![Ouvrir dans Home Assistant](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/Quentin-CS/ha-addon-n8n)
 
 2. Installez l'addon **N8N**
 3. Configurez et démarrez
