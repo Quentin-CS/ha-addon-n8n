@@ -22,8 +22,8 @@ options:
   ssl: false
   certfile: "fullchain.pem"
   keyfile: "privkey.pem"
-  username: ""
-  password: ""
+  username: "admin"
+  password: "admin"
   timezone: "Europe/Paris"
   webhook_url: ""
   generic_timezone: "Europe/Paris"
