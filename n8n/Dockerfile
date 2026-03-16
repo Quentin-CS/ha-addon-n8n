@@ -1,8 +1,9 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install Node.js and dependencies
-RUN apk add --no-cache \
+# Install requirements for app
+RUN \
+  apk add --no-cache \
     nodejs \
     npm \
     python3 \
@@ -13,11 +14,11 @@ RUN apk add --no-cache \
 ARG N8N_VERSION=2.12.0
 RUN npm install -g n8n@${N8N_VERSION} --unsafe-perm
 
-# Create data directory
+# Create persistent data directory
 RUN mkdir -p /data/n8n
 
-# Copy and set run script
-COPY run.sh /run.sh
+# Copy run script
+COPY run.sh /
 RUN chmod a+x /run.sh
 
 WORKDIR /data

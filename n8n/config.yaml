@@ -8,6 +8,7 @@ arch:
   - amd64
   - armhf
   - armv7
+  - i386
 startup: application
 boot: auto
 ports:
@@ -15,13 +16,14 @@ ports:
 ports_description:
   5678/tcp: "N8N Web Interface"
 map:
-  - share:rw
+  - type: share
+    read_only: false
 options:
   ssl: false
   certfile: "fullchain.pem"
   keyfile: "privkey.pem"
-  username: ""
-  password: ""
+  username: "admin"
+  password: "admin"
   timezone: "Europe/Paris"
   webhook_url: ""
 schema:
